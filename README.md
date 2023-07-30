@@ -10,3 +10,4 @@
 
 - <b> Add config
 - <b> Add Auth_screen Ui
+- <b> Create sever + Auth Route
