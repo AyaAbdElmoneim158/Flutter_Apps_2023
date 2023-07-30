@@ -1,4 +1,5 @@
-import 'package:apps/constants/global_variables.dart';
+import '../../../constants/global_variables.dart';
+import '../services/auth_service.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 
@@ -15,40 +16,57 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   Auth _auth = Auth.signUp;
-  GlobalKey signInFormKey = GlobalKey<FormState>();
-  GlobalKey signUpFormKey = GlobalKey<FormState>();
-  TextEditingController? nameController = TextEditingController();
-  TextEditingController? emailController = TextEditingController();
-  TextEditingController? passwordController = TextEditingController();
+  final signInFormKey = GlobalKey<FormState>();
+  final signUpFormKey = GlobalKey<FormState>();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   void dispose() {
     super.dispose();
-    nameController!.dispose();
-    emailController!.dispose();
-    passwordController!.dispose();
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+  }
+
+  void signupUser() {
+    AuthService.signupUser(
+        context: context,
+        name: nameController.text,
+        password: passwordController.text,
+        email: emailController.text);
+  }
+
+  void signinUser() {
+    AuthService.signinUser(
+        context: context,
+        password: passwordController.text,
+        email: emailController.text);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: GlobalVariables.backgroundColor,
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Welcome", style: Theme.of(context).textTheme.headlineSmall),
-            _buildRadioBtn(context,
-                title: "Create account", value: Auth.signUp),
-            _buildRadioBtn(context, title: "SignIn", value: Auth.signIn),
-            ConditionalBuilder(
-              condition: _auth == Auth.signUp,
-              builder: (context) => _buildSignUpForm(),
-              fallback: (context) => _buildSignInForm(),
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Welcome", style: Theme.of(context).textTheme.headlineSmall),
+              _buildRadioBtn(context,
+                  title: "Create account", value: Auth.signUp),
+              _buildRadioBtn(context, title: "SignIn", value: Auth.signIn),
+              ConditionalBuilder(
+                condition: _auth == Auth.signUp,
+                builder: (context) => _buildSignUpForm(),
+                fallback: (context) => _buildSignInForm(),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -76,7 +94,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
   Widget _buildSignUpForm() {
     return Form(
-      key: signInFormKey,
+      key: signUpFormKey,
       child: Column(
         children: [
           _buildTextField(controller: nameController, hintText: "Name"),
@@ -85,7 +103,13 @@ class _AuthScreenState extends State<AuthScreen> {
           const SizedBox(height: 16),
           _buildTextField(controller: passwordController, hintText: "Password"),
           const SizedBox(height: 24),
-          _buildBtn(onPressed: () {}, data: "Sign Up"),
+          _buildBtn(
+              onPressed: () {
+                if (signUpFormKey.currentState!.validate()) {
+                  signupUser();
+                }
+              },
+              data: "Sign Up"),
         ],
       ),
     );
@@ -96,6 +120,9 @@ class _AuthScreenState extends State<AuthScreen> {
     return TextFormField(
       controller: controller,
       validator: (value) {
+        if (value == null || value.isEmpty) {
+          return "Enter your $hintText";
+        }
         return null;
       },
       decoration: InputDecoration(
@@ -110,14 +137,20 @@ class _AuthScreenState extends State<AuthScreen> {
 
   Widget _buildSignInForm() {
     return Form(
-      key: signUpFormKey,
+      key: signInFormKey,
       child: Column(
         children: [
           _buildTextField(controller: emailController, hintText: "Email"),
           const SizedBox(height: 16),
           _buildTextField(controller: passwordController, hintText: "Password"),
           const SizedBox(height: 24),
-          _buildBtn(onPressed: () {}, data: "Sign In"),
+          _buildBtn(
+              onPressed: () {
+                if (signInFormKey.currentState!.validate()) {
+                  signinUser();
+                }
+              },
+              data: "Sign In"),
         ],
       ),
     );

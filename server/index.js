@@ -20,6 +20,6 @@ const port = 8000;
 app.use(express.json());
 app.use(authRoute);
 
-app.listen(port, (req, res) => {
+app.listen(port, '0.0.0.0', () => {
     console.log(`Server running on port ${port}`);
 });
