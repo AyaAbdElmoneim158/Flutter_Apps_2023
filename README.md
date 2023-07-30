@@ -8,4 +8,5 @@
 
 ## \* Steps 🐾
 
-- <b> \_ Add config
+- <b> Add config
+- <b> Add Auth_screen Ui
