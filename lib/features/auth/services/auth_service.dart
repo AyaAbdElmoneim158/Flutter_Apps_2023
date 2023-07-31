@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import '../../../constants/error_handel.dart';
 import '../../../constants/utils.dart';
-import '../../bottomBar/screen/bottom_bar_screen.dart';
+import '../../../common/widgets/bottom_bar_screen.dart';
 import '../../../model/user_model.dart';
 import '../../../provider/user_provider.dart';
 import 'package:flutter/material.dart';
@@ -82,7 +82,7 @@ class AuthService {
 
             Navigator.pushNamedAndRemoveUntil(
               context,
-              BottomBarScreen.routeName,
+              BottomBar.routeName,
               (route) => false,
             );
           });

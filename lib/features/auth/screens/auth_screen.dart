@@ -1,3 +1,6 @@
+import '../../../common/widgets/custom_btn.dart';
+import '../../../common/widgets/custom_textfield.dart';
+
 import '../../../constants/global_variables.dart';
 import '../services/auth_service.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
@@ -53,9 +56,10 @@ class _AuthScreenState extends State<AuthScreen> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const SizedBox(height: 64),
               Text("Welcome", style: Theme.of(context).textTheme.headlineSmall),
               _buildRadioBtn(context,
                   title: "Create account", value: Auth.signUp),
@@ -72,65 +76,26 @@ class _AuthScreenState extends State<AuthScreen> {
     );
   }
 
-  SizedBox _buildBtn(
-      {required void Function()? onPressed, required String data}) {
-    return SizedBox(
-      width: double.infinity,
-      height: 55,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10))),
-          backgroundColor: GlobalVariables.secondaryColor,
-        ),
-        child: Text(data,
-            style: const TextStyle(
-              color: GlobalVariables.backgroundColor,
-            )),
-      ),
-    );
-  }
-
   Widget _buildSignUpForm() {
     return Form(
       key: signUpFormKey,
       child: Column(
         children: [
-          _buildTextField(controller: nameController, hintText: "Name"),
+          CustomTextfield(controller: nameController, hintText: "Name"),
           const SizedBox(height: 16),
-          _buildTextField(controller: emailController, hintText: "Email"),
+          CustomTextfield(controller: emailController, hintText: "Email"),
           const SizedBox(height: 16),
-          _buildTextField(controller: passwordController, hintText: "Password"),
+          CustomTextfield(controller: passwordController, hintText: "Password"),
           const SizedBox(height: 24),
-          _buildBtn(
-              onPressed: () {
-                if (signUpFormKey.currentState!.validate()) {
-                  signupUser();
-                }
-              },
-              data: "Sign Up"),
+          CustomBtn(
+            data: "Sign Up",
+            onPressed: () {
+              if (signUpFormKey.currentState!.validate()) {
+                signupUser();
+              }
+            },
+          )
         ],
-      ),
-    );
-  }
-
-  TextFormField _buildTextField(
-      {required TextEditingController? controller, required String? hintText}) {
-    return TextFormField(
-      controller: controller,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return "Enter your $hintText";
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-        border: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black38)),
-        enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black38)),
-        hintText: hintText,
       ),
     );
   }
@@ -140,17 +105,18 @@ class _AuthScreenState extends State<AuthScreen> {
       key: signInFormKey,
       child: Column(
         children: [
-          _buildTextField(controller: emailController, hintText: "Email"),
+          CustomTextfield(controller: emailController, hintText: "Email"),
           const SizedBox(height: 16),
-          _buildTextField(controller: passwordController, hintText: "Password"),
+          CustomTextfield(controller: passwordController, hintText: "Password"),
           const SizedBox(height: 24),
-          _buildBtn(
-              onPressed: () {
-                if (signInFormKey.currentState!.validate()) {
-                  signinUser();
-                }
-              },
-              data: "Sign In"),
+          CustomBtn(
+            data: "Sign In",
+            onPressed: () {
+              if (signInFormKey.currentState!.validate()) {
+                signinUser();
+              }
+            },
+          )
         ],
       ),
     );
