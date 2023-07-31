@@ -10,6 +10,9 @@ import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:cloudinary_public/cloudinary_public.dart';
 
+String localhost = '192.168.1.3'; // ->
+String baseUrl = "http://$localhost:8080";
+
 class AdminServices {
   // Add product to SellProducts
   void sellProduct({
@@ -46,7 +49,7 @@ class AdminServices {
       );
 
       http.Response res = await http.post(
-        Uri.parse('/admin/add-product'), //baseUrl
+        Uri.parse('$baseUrl/admin/add-product'), //baseUrl
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           'x-auth-token': userProvider.user.token,
@@ -80,7 +83,7 @@ class AdminServices {
     List<Product> productList = [];
     try {
       http.Response res =
-          await http.get(Uri.parse('/admin/get-products'), //base url
+          await http.get(Uri.parse('$baseUrl/admin/get-products'), //base url
               headers: {
             'Content-Type': 'application/json; charset=UTF-8',
             'x-auth-token': userProvider.user.token,
@@ -119,7 +122,7 @@ class AdminServices {
 
     try {
       http.Response res = await http.post(
-        Uri.parse('/admin/delete-product'), //baseURL
+        Uri.parse('$baseUrl/admin/delete-product'), //baseURL
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           'x-auth-token': userProvider.user.token,

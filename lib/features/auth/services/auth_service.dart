@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
-  static String localhost = 'localhost'; // ->
+  static String localhost = '192.168.1.3'; // ->
   static String baseUrl = "http://$localhost:8080";
 
   static void signupUser({
