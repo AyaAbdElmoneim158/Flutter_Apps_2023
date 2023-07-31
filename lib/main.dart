@@ -1,9 +1,8 @@
-import 'package:apps/features/admin/screen/admin_screen.dart';
+import 'features/admin/screen/admin_screen.dart';
 
 import 'constants/global_variables.dart';
 import 'constants/router.dart';
 import 'features/auth/screens/auth_screen.dart';
-import 'features/auth/services/auth_service.dart';
 import 'common/widgets/bottom_bar_screen.dart';
 import 'provider/user_provider.dart';
 import 'package:flutter/material.dart';
@@ -48,12 +47,10 @@ class _MyAppState extends State<MyApp> {
           useMaterial3: true, // can remove this line
         ),
         onGenerateRoute: (settings) => generateRoute(settings),
-        home:
-            //  Provider.of<UserProvider>(context).user.token.isEmpty
-            //     ? const AuthScreen()
-            //     : Provider.of<UserProvider>(context).user.type == 'user'
-            //         ? const BottomBar()
-            //         :
-            const AdminScreen());
+        home: Provider.of<UserProvider>(context).user.token.isEmpty
+            ? const AuthScreen()
+            : Provider.of<UserProvider>(context).user.type == 'user'
+                ? const BottomBar()
+                : const AdminScreen());
   }
 }

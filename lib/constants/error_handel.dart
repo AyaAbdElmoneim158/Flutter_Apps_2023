@@ -6,7 +6,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 
 void httpErrorHandle({
   required http.Response response,
-  required BuildContext context,
+  required context,
   required VoidCallback onSuccess,
 }) {
   switch (response.statusCode) {

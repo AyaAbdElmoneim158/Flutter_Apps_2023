@@ -1,8 +1,8 @@
-import 'package:apps/constants/global_variables.dart';
-import 'package:apps/features/home/widgets/address_box.dart';
-import 'package:apps/features/home/widgets/carousel_image.dart';
-import 'package:apps/features/home/widgets/deal_of_day.dart';
-import 'package:apps/features/home/widgets/top_categories.dart';
+import '../../../constants/global_variables.dart';
+import '../widgets/address_box.dart';
+import '../widgets/carousel_image.dart';
+import '../widgets/deal_of_day.dart';
+import '../widgets/top_categories.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {

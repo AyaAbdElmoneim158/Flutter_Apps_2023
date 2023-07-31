@@ -13,3 +13,4 @@
 - <b> Create sever + Auth Route
 - <b> Connect Auth Route with Auth_screen
 - <b> Add NavBar (Account + home )
+- <b> Add Admin (posts + Add product)

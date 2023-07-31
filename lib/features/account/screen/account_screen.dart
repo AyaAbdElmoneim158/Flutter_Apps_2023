@@ -1,7 +1,7 @@
-import 'package:apps/constants/global_variables.dart';
-import 'package:apps/features/account/widgets/account_btn.dart';
-import 'package:apps/model/user_model.dart';
-import 'package:apps/provider/user_provider.dart';
+import '../../../constants/global_variables.dart';
+import '../widgets/account_btn.dart';
+import '../../../model/user_model.dart';
+import '../../../provider/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

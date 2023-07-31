@@ -1,5 +1,5 @@
-import 'package:apps/features/account/screen/account_screen.dart';
-import 'package:apps/features/home/screen/home_screen.dart';
+import '../../features/account/screen/account_screen.dart';
+import '../../features/home/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/global_variables.dart';
