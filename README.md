@@ -12,4 +12,4 @@
 - <b> Add Auth_screen Ui
 - <b> Create sever + Auth Route
 - <b> Connect Auth Route with Auth_screen
-- <b> Add NavBar
+- <b> Add NavBar (Account + home )

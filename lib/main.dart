@@ -1,3 +1,5 @@
+import 'package:apps/features/admin/screen/admin_screen.dart';
+
 import 'constants/global_variables.dart';
 import 'constants/router.dart';
 import 'features/auth/screens/auth_screen.dart';
@@ -24,7 +26,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    AuthService.getUserData(context: context);
+    //! AuthService.getUserData(context: context);
   }
 
   @override
@@ -46,8 +48,12 @@ class _MyAppState extends State<MyApp> {
           useMaterial3: true, // can remove this line
         ),
         onGenerateRoute: (settings) => generateRoute(settings),
-        home: Provider.of<UserProvider>(context).user.token.isEmpty
-            ? const AuthScreen()
-            : const BottomBar());
+        home:
+            //  Provider.of<UserProvider>(context).user.token.isEmpty
+            //     ? const AuthScreen()
+            //     : Provider.of<UserProvider>(context).user.type == 'user'
+            //         ? const BottomBar()
+            //         :
+            const AdminScreen());
   }
 }
