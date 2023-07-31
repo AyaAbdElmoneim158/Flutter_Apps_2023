@@ -1,16 +1,11 @@
-# apps
+# \* Apps 📱
 
-A new Flutter project.
+<div align="center">
+    <img src="https://user-images.githubusercontent.com/114832629/230302399-5d8f34e7-bfc5-4597-8fff-6293044f47bd.png" alt="react logo" width=230> 
+    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+    <img src="https://fscl01.fonpit.de/userfiles/7687254/image/NextPit_Apps-w1400h1050.jpg" alt="shopping logo" width="280px" height="auto" style="border-radius:50%"> 
+</div>
 
-## Getting Started
+- <b> Amazon clone
+- <b> Quran App
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
