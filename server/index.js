@@ -22,6 +22,7 @@ const port = 8000;
 app.use(express.json());
 app.use(authRoute);
 app.use(adminRoute);
+app.use(testRoute);
 
 
 app.listen(port, '0.0.0.0', () => {

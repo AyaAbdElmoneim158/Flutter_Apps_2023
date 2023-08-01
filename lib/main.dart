@@ -1,8 +1,12 @@
+import 'package:apps/features/auth/services/auth_service.dart';
+
 import 'features/admin/screen/admin_screen.dart';
 
 import 'constants/global_variables.dart';
 import 'constants/router.dart';
 import 'features/auth/screens/auth_screen.dart';
+import 'features/test.dart';
+
 import 'common/widgets/bottom_bar_screen.dart';
 import 'provider/user_provider.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +29,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    //! AuthService.getUserData(context: context);
+    // AuthService.getUserData(context: context);
   }
 
   @override
@@ -46,11 +50,13 @@ class _MyAppState extends State<MyApp> {
           ),
           useMaterial3: true, // can remove this line
         ),
-        onGenerateRoute: (settings) => generateRoute(settings),
-        home: Provider.of<UserProvider>(context).user.token.isEmpty
-            ? const AuthScreen()
-            : Provider.of<UserProvider>(context).user.type == 'user'
-                ? const BottomBar()
-                : const AdminScreen());
+        // onGenerateRoute: (settings) => generateRoute(settings),
+        home: TestScreen()
+        //  Provider.of<UserProvider>(context).user.token.isEmpty
+        //     ? const AuthScreen()
+        //     : Provider.of<UserProvider>(context).user.type == 'user'
+        //         ? const BottomBar()
+        //         : const AdminScreen()
+        );
   }
 }
