@@ -1,5 +1,5 @@
 const express = require('express');
-const User = require('../models/user');
+const User = require('../model/user_model');
 var bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const auth = require('../middleware/auth');
@@ -7,7 +7,7 @@ const auth = require('../middleware/auth');
 const authRoute = express.Router();
 
 // SignUp---------------------------------
-authRoute.post('/api/signup', async (req, res) => {
+authRoute.post('/api/signup', async(req, res) => {
     try {
         const { name, email, password } = req.body;
         let isUserExist = await User.findOne({ email });
@@ -27,7 +27,7 @@ authRoute.post('/api/signup', async (req, res) => {
 });
 
 // SignIn---------------------------------
-authRoute.post('/api/signin', async (req, res) => {
+authRoute.post('/api/signin', async(req, res) => {
     try {
         const { name, email } = req.body;
         const user = await User.findOne({ email });
@@ -50,7 +50,7 @@ authRoute.post('/api/signin', async (req, res) => {
 });
 
 // Valid-Token---------------------------------
-authRoute.post('/tokenIsValid', async (req, res) => {
+authRoute.post('/tokenIsValid', async(req, res) => {
     try {
         const token = req.header('x-auth-token');
         if (!token) return res.json(false);
@@ -69,8 +69,8 @@ authRoute.post('/tokenIsValid', async (req, res) => {
 });
 
 //get-data--------------------------------
-authRoute.get('/', auth, async (req, res) => {
+authRoute.get('/', auth, async(req, res) => {
     const user = await User.findById(req.user);
-    res.json({ ...user._doc, token: req.token });
+    res.json({...user._doc, token: req.token });
 });
 module.exports = authRoute;

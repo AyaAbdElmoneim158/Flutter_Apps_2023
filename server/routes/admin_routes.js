@@ -1,10 +1,10 @@
 const express = require('express');
-const { Product } = require("../models/product");
+const { Product } = require("../model/product_model");
 const adminRoute = express.Router();
 
 adminRoute.post();
 // Get all your products
-adminRoute.get("/admin/get-products", admin, async (req, res) => {
+adminRoute.get("/admin/get-products", admin, async(req, res) => {
     try {
         const products = await Product.find({});
         res.json(products);
@@ -14,7 +14,7 @@ adminRoute.get("/admin/get-products", admin, async (req, res) => {
 });
 
 // Delete the product
-adminRoute.post("/admin/delete-product", admin, async (req, res) => {
+adminRoute.post("/admin/delete-product", admin, async(req, res) => {
     try {
         const { id } = req.body;
         let product = await Product.findByIdAndDelete(id);

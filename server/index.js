@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 // Imports Files.............................
-const authRoute = require('./routes/auth_route');
+const authRoute = require('./routes/auth_routes');
 const adminRoute = require('./routes/admin_routes');
 
 
@@ -20,9 +20,9 @@ const port = 8000;
 
 // Middleware.............................
 app.use(express.json());
-app.use(authRoute);
-app.use(adminRoute);
-app.use(testRoute);
+// app.use(authRoute);
+// app.use(adminRoute);
+// app.use(testRoute);
 
 
 app.listen(port, '0.0.0.0', () => {
