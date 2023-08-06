@@ -16,7 +16,7 @@ dependencies:
   conditional_builder_null_safety: ^0.0.6
   cupertino_icons: ^1.0.2
   dotted_border: ^2.0.0+3
-  file_picker: ^5.3.3
+  file_picker: ^4.5.1
   flutter:
     sdk: flutter
   http: ^1.1.0

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:apps/constants/global_variables.dart';
+
 import '../../../constants/error_handel.dart';
 import '../../../constants/utils.dart';
 import '../../../common/widgets/bottom_bar_screen.dart';
@@ -12,9 +14,6 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
-  static String localhost = '127.0.0.1'; // ->172.30.176.1 -> 192.168.1.2
-  static String baseUrl = "http://$localhost:8080";
-
   static void signupUser({
     required BuildContext context,
     required String name,

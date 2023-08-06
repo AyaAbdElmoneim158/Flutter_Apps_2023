@@ -2,9 +2,11 @@ import 'dart:io';
 import 'package:apps/common/widgets/custom_btn.dart';
 import 'package:apps/common/widgets/custom_textfield.dart';
 import 'package:apps/constants/global_variables.dart';
+import 'package:apps/features/admin/service/admin_services.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:apps/constants/utils.dart';
 
 class AddProductScreen extends StatefulWidget {
   static const String routeName = '/add-product';
@@ -19,7 +21,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   final TextEditingController quantityController = TextEditingController();
-  // final AdminServices adminServices = AdminServices();
+  final AdminServices adminServices = AdminServices();
 
   String category = 'Mobiles';
   List<File> images = [];
@@ -44,23 +46,23 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
   void sellProduct() {
     if (_addProductFormKey.currentState!.validate() && images.isNotEmpty) {
-      // adminServices.sellProduct(
-      //   context: context,
-      //   name: productNameController.text,
-      //   description: descriptionController.text,
-      //   price: double.parse(priceController.text),
-      //   quantity: double.parse(quantityController.text),
-      //   category: category,
-      //   images: images,
-      // );
+      adminServices.sellProduct(
+        context: context,
+        name: productNameController.text,
+        description: descriptionController.text,
+        price: double.parse(priceController.text),
+        quantity: double.parse(quantityController.text),
+        category: category,
+        images: images,
+      );
     }
   }
 
   void selectImages() async {
-    // var res = await pickImages();
-    // setState(() {
-    //   images = res;
-    // });
+    var res = await pickImages();
+    setState(() {
+      images = res;
+    });
   }
 
   @override
