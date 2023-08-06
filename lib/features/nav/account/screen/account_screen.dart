@@ -1,7 +1,8 @@
-import '../../../constants/global_variables.dart';
+import 'package:apps/features/nav/account/widgets/orders.dart';
+import 'package:apps/model/user_model.dart';
+import 'package:apps/provider/user_provider.dart';
+import '../../../../constants/global_variables.dart';
 import '../widgets/account_btn.dart';
-import '../../../model/user_model.dart';
-import '../../../provider/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -56,7 +57,9 @@ class _AccountScreenState extends State<AccountScreen> {
       body: Column(children: [
         _buildBelowAppBar(user),
         const SizedBox(height: 10),
-        _buildBtns()
+        _buildBtns(),
+        const SizedBox(height: 10),
+        const Orders()
       ]),
     );
   }

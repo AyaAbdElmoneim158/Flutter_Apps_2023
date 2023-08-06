@@ -1,4 +1,3 @@
-import '../features/admin/screen/add_product_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../features/auth/screens/auth_screen.dart';
@@ -18,11 +17,11 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         builder: (_) => const BottomBar(),
       );
 
-    case AddProductScreen.routeName:
-      return MaterialPageRoute(
-        settings: routeSettings,
-        builder: (_) => const AddProductScreen(),
-      );
+    // case AddProductScreen.routeName:
+    //   return MaterialPageRoute(
+    //     settings: routeSettings,
+    //     builder: (_) => const AddProductScreen(),
+    //   );
 
     default:
       return MaterialPageRoute(

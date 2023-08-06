@@ -1,4 +1,4 @@
-import '../../../constants/global_variables.dart';
+import '../../../../constants/global_variables.dart';
 import '../widgets/address_box.dart';
 import '../widgets/carousel_image.dart';
 import '../widgets/deal_of_day.dart';

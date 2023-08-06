@@ -92,6 +92,7 @@ class _AuthScreenState extends State<AuthScreen> {
             onPressed: () {
               if (signUpFormKey.currentState!.validate()) {
                 signupUser();
+                debugPrint("signupUser");
               }
             },
           )

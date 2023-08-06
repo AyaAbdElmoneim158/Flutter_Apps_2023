@@ -1,4 +1,4 @@
-import '../../../constants/global_variables.dart';
+import '../../../../constants/global_variables.dart';
 import 'package:flutter/material.dart';
 
 class TopCategories extends StatelessWidget {

@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
-  static String localhost = '192.168.1.3'; // ->
+  static String localhost = '127.0.0.1'; // ->172.30.176.1 -> 192.168.1.2
   static String baseUrl = "http://$localhost:8080";
 
   static void signupUser({
@@ -45,10 +45,11 @@ class AuthService {
                 contentType: ContentType.success);
           });
     }).catchError((err) {
-      showSnackBar(context,
-          title: 'Failure',
-          message: err.toString(),
-          contentType: ContentType.failure);
+      debugPrint("err....! ${err.toString()}");
+      // showSnackBar(context,
+      //     title: 'Failure..!',
+      //     message: err.toString(),
+      //     contentType: ContentType.failure);
     });
   }
 

@@ -19,9 +19,14 @@ class GlobalVariables {
 
   // STATIC IMAGES
   static const List<String> carouselImages = [
-    'https://img.freepik.com/free-vector/vaccine-research-development-infographic_1308-50505.jpg',
-    'https://img.freepik.com/free-vector/world-car-free-day-illustration_23-2148621937.jpg',
-    'https://img.freepik.com/free-vector/hand-drawn-wedding-ornaments-collection_52683-64434.jpg'
+    // 'https://img.freepik.com/free-vector/vaccine-research-development-infographic_1308-50505.jpg',
+    // 'https://img.freepik.com/free-vector/world-car-free-day-illustration_23-2148621937.jpg',
+    // 'https://img.freepik.com/free-vector/hand-drawn-wedding-ornaments-collection_52683-64434.jpg'
+    'https://m.media-amazon.com/images/I/71WlGA7Ct+L._SX3000_.jpg',
+    'https://m.media-amazon.com/images/I/710ybG+VwoL._SX3000_.jpg',
+    'https://m.media-amazon.com/images/I/7102I1D+77L._SX3000_.jpg',
+    'https://m.media-amazon.com/images/I/71PaCYgmufL._SX3000_.jpg',
+    'https://m.media-amazon.com/images/I/61Vk5g9BXZL._SX3000_.jpg',
   ];
 
   static const List<Map<String, String>> categoryImages = [

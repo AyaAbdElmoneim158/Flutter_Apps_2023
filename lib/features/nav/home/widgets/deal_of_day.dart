@@ -49,7 +49,9 @@ class _DealOfDayState extends State<DealOfDay> {
           Image.network(
             'https://img.freepik.com/free-vector/education-concept-sketch_1284-7335.jpg', // product!.images[0],
             height: 235,
-            fit: BoxFit.fitHeight,
+            width: double.infinity,
+
+            fit: BoxFit.cover,
           ),
           Container(
             padding: const EdgeInsets.only(left: 15),

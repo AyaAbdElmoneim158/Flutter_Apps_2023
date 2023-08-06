@@ -1,7 +1,7 @@
 // Imports packages.............................
 const express = require('express');
 const mongoose = require('mongoose');
-
+const morgan = require('morgan')
 // Imports Files.............................
 const authRoute = require('./routes/auth_routes');
 const adminRoute = require('./routes/admin_routes');
@@ -19,8 +19,9 @@ const app = express();
 const port = 8000;
 
 // Middleware.............................
+app.use(morgan('dev'))
 app.use(express.json());
-// app.use(authRoute);
+app.use(authRoute);
 // app.use(adminRoute);
 // app.use(testRoute);
 

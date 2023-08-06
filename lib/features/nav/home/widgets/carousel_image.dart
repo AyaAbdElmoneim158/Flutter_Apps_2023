@@ -1,5 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import '../../../constants/global_variables.dart';
+import '../../../../constants/global_variables.dart';
 import 'package:flutter/material.dart';
 
 class CarouselImage extends StatelessWidget {
@@ -14,6 +14,7 @@ class CarouselImage extends StatelessWidget {
             builder: (BuildContext context) => Image.network(
               i,
               fit: BoxFit.cover,
+              width: double.infinity,
               height: 200,
             ),
           );

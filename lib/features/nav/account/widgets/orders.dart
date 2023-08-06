@@ -1,6 +1,6 @@
-import '../../../constants/global_variables.dart';
 import 'single_product.dart';
 import 'package:flutter/material.dart';
+import '../../../../constants/global_variables.dart';
 
 class Orders extends StatefulWidget {
   const Orders({Key? key}) : super(key: key);
