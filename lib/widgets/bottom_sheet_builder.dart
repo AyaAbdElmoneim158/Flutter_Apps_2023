@@ -1,52 +1,50 @@
+import 'package:apps/cubits/add_notes/add_notes_cubit.dart';
+import 'package:apps/models/note_model.dart';
 import 'package:apps/widgets/custom_btn.dart';
+import 'package:apps/widgets/custom_snackbar.dart';
 import 'package:apps/widgets/custom_text_field.dart';
+import 'package:apps/widgets/form_bottom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 
-class BottomSheetBuilder extends StatefulWidget {
-  const BottomSheetBuilder({
-    super.key,
-  });
-
-  @override
-  State<BottomSheetBuilder> createState() => _BottomSheetBuilderState();
-}
-
-class _BottomSheetBuilderState extends State<BottomSheetBuilder> {
-  final GlobalKey<FormState> formKey = GlobalKey();
-  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  String? title, description;
+class BottomSheetBuilder extends StatelessWidget {
+  const BottomSheetBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Form(
-          key: formKey,
-          autovalidateMode: autovalidateMode,
-          child: SizedBox(
-            height: 400,
-            child: ListView(
-              children: [
-                const SizedBox(height: 16),
-                CustomTextField(
-                    hintText: "Note Title", onSaved: (val) => title = val),
-                const SizedBox(height: 16),
-                CustomTextField(
-                    hintText: "Note Description",
-                    maxLines: 7,
-                    onSaved: (val) => description = val),
-                const SizedBox(height: 32),
-                CustomBtn(onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-                  } else {
-                    autovalidateMode = AutovalidateMode.always;
-                    setState(() {});
-                  }
-                })
-              ],
-            ),
-          )),
-    );
+    return BlocProvider(
+        create: (context) => AddNotesCubit(),
+        child: BlocConsumer<AddNotesCubit, AddNotesState>(
+          listener: (context, state) {
+            if (state is AddNotesSuccess) {
+              debugPrint("AddNotesSuccess");
+              Navigator.pop(context); //! message
+              final snackBar = customSnackBar(
+                  contentType: ContentType.success,
+                  title: "Add Note Successful");
+
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(snackBar);
+            }
+            if (state is AddNotesFailure) {
+              debugPrint("AddNotesFailure");
+              Navigator.pop(context); //! message
+              final snackBar = customSnackBar(
+                  contentType: ContentType.failure, title: "Add Note failure");
+
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(snackBar);
+            }
+          },
+          builder: (context, state) {
+            return ModalProgressHUD(
+                inAsyncCall: state is AddNotesLoading ? true : false,
+                child: const FormBottomSheet());
+          },
+        ));
   }
 }

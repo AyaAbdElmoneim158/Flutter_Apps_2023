@@ -9,7 +9,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(NoteModelAdapter());
-  await Hive.openBox(notesBoxName);
+  await Hive.openBox<NoteModel>(notesBoxName);
 
   runApp(const NotesApp());
 }

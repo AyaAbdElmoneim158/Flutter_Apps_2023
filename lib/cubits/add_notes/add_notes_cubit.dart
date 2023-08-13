@@ -10,11 +10,13 @@ class AddNotesCubit extends Cubit<AddNotesState> {
 
   void addNote(NoteModel noteModel) {
     emit(AddNotesLoading());
+    debugPrint(
+        "len ${Hive.box<NoteModel>(notesBoxName).values.length.toString()}");
     Hive.box<NoteModel>(notesBoxName).add(noteModel).then((value) {
       debugPrint("AddNotesSuccess..... $value");
       emit(AddNotesSuccess());
     }).catchError((err) {
-      debugPrint("AddNotesFailure....");
+      debugPrint("AddNotesFailure....$err");
       emit(AddNotesFailure(err: err.toString()));
     });
   }

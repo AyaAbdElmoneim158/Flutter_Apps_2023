@@ -1,0 +1,59 @@
+import 'package:apps/cubits/add_notes/add_notes_cubit.dart';
+import 'package:apps/models/note_model.dart';
+import 'package:apps/widgets/custom_btn.dart';
+import 'package:apps/widgets/custom_text_field.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class FormBottomSheet extends StatefulWidget {
+  const FormBottomSheet({super.key});
+
+  @override
+  State<FormBottomSheet> createState() => _FormBottomSheetState();
+}
+
+class _FormBottomSheetState extends State<FormBottomSheet> {
+  GlobalKey<FormState> formKey = GlobalKey();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  String? title, description;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Form(
+          key: formKey,
+          autovalidateMode: autovalidateMode,
+          child: SizedBox(
+            height: 400,
+            child: ListView(
+              children: [
+                const SizedBox(height: 16),
+                CustomTextField(
+                    hintText: "Note Title", onSaved: (val) => title = val),
+                const SizedBox(height: 16),
+                CustomTextField(
+                    hintText: "Note Description",
+                    maxLines: 7,
+                    onSaved: (val) => description = val),
+                const SizedBox(height: 32),
+                CustomBtn(onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    NoteModel noteModel = NoteModel(
+                        title: title!,
+                        subTitle: description!,
+                        date: DateTime.now().toString(),
+                        color: const Color(0xff9BCDD2).value);
+                    BlocProvider.of<AddNotesCubit>(context).addNote(noteModel);
+                  } else {
+                    autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
+                  }
+                })
+              ],
+            ),
+          )),
+    );
+  }
+}
