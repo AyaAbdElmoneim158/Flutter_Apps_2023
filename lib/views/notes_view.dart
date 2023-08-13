@@ -1,3 +1,5 @@
+import 'package:apps/widgets/notes_view_app_bar.dart';
+import 'package:apps/widgets/notes_view_body.dart';
 import 'package:flutter/material.dart';
 
 class NotesView extends StatelessWidget {
@@ -5,11 +7,15 @@ class NotesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text(
-          "NotesView",
-          style: Theme.of(context).textTheme.headlineMedium,
+    return const Scaffold(
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          children: [
+            SizedBox(height: 24),
+            NotesViewAppBar(),
+            NotesViewBody(),
+          ],
         ),
       ),
     );
