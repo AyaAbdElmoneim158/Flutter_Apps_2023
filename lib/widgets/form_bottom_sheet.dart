@@ -1,4 +1,5 @@
 import 'package:apps/cubits/add_notes/add_notes_cubit.dart';
+import 'package:apps/cubits/notes_cubit/notes_cubit.dart';
 import 'package:apps/models/note_model.dart';
 import 'package:apps/widgets/custom_btn.dart';
 import 'package:apps/widgets/custom_text_field.dart';
@@ -19,41 +20,47 @@ class _FormBottomSheetState extends State<FormBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Form(
-          key: formKey,
-          autovalidateMode: autovalidateMode,
-          child: SizedBox(
-            height: 400,
-            child: ListView(
-              children: [
-                const SizedBox(height: 16),
-                CustomTextField(
-                    hintText: "Note Title", onSaved: (val) => title = val),
-                const SizedBox(height: 16),
-                CustomTextField(
-                    hintText: "Note Description",
-                    maxLines: 7,
-                    onSaved: (val) => description = val),
-                const SizedBox(height: 32),
-                CustomBtn(onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-                    NoteModel noteModel = NoteModel(
-                        title: title!,
-                        subTitle: description!,
-                        date: DateTime.now().toString(),
-                        color: const Color(0xff9BCDD2).value);
-                    BlocProvider.of<AddNotesCubit>(context).addNote(noteModel);
-                  } else {
-                    autovalidateMode = AutovalidateMode.always;
-                    setState(() {});
-                  }
-                })
-              ],
-            ),
-          )),
+    return BlocBuilder<NotesCubit, NotesState>(
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Form(
+              key: formKey,
+              autovalidateMode: autovalidateMode,
+              child: SizedBox(
+                height: 400,
+                child: ListView(
+                  children: [
+                    const SizedBox(height: 16),
+                    CustomTextField(
+                        hintText: "Note Title", onSaved: (val) => title = val),
+                    const SizedBox(height: 16),
+                    CustomTextField(
+                        hintText: "Note Description",
+                        maxLines: 7,
+                        onSaved: (val) => description = val),
+                    const SizedBox(height: 32),
+                    CustomBtn(onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        formKey.currentState!.save();
+                        NoteModel noteModel = NoteModel(
+                            title: title!,
+                            subTitle: description!,
+                            date: DateTime.now().toString(),
+                            color: const Color(0xff9BCDD2).value);
+                        BlocProvider.of<AddNotesCubit>(context)
+                            .addNote(noteModel);
+                        BlocProvider.of<NotesCubit>(context).fetchNotes();
+                      } else {
+                        autovalidateMode = AutovalidateMode.always;
+                        setState(() {});
+                      }
+                    })
+                  ],
+                ),
+              )),
+        );
+      },
     );
   }
 }

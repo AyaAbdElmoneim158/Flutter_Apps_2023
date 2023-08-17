@@ -1,10 +1,24 @@
+import 'package:apps/cubits/notes_cubit/notes_cubit.dart';
 import 'package:apps/widgets/bottom_sheet_builder.dart';
 import 'package:apps/widgets/notes_view_app_bar.dart';
 import 'package:apps/widgets/notes_view_body.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NotesView extends StatelessWidget {
+class NotesView extends StatefulWidget {
   const NotesView({super.key});
+
+  @override
+  State<NotesView> createState() => _NotesViewState();
+}
+
+class _NotesViewState extends State<NotesView> {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<NotesCubit>(context).fetchNotes();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {

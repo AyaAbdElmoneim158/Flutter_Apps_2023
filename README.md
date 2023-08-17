@@ -7,3 +7,4 @@
     * Add Model to notes + init hive
     * Add form validation + init bloc AddNotes
     * Add Notes to Hive
+    * Fetch notes to home page

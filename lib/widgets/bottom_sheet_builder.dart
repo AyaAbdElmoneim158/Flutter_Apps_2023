@@ -1,8 +1,6 @@
 import 'package:apps/cubits/add_notes/add_notes_cubit.dart';
-import 'package:apps/models/note_model.dart';
-import 'package:apps/widgets/custom_btn.dart';
+import 'package:apps/cubits/notes_cubit/notes_cubit.dart';
 import 'package:apps/widgets/custom_snackbar.dart';
-import 'package:apps/widgets/custom_text_field.dart';
 import 'package:apps/widgets/form_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,6 +26,7 @@ class BottomSheetBuilder extends StatelessWidget {
               ScaffoldMessenger.of(context)
                 ..hideCurrentSnackBar()
                 ..showSnackBar(snackBar);
+              BlocProvider.of<NotesCubit>(context).fetchNotes();
             }
             if (state is AddNotesFailure) {
               debugPrint("AddNotesFailure");
