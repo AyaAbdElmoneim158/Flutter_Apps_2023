@@ -4,7 +4,6 @@ import 'package:apps/widgets/custom_snackbar.dart';
 import 'package:apps/widgets/form_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 
 class BottomSheetBuilder extends StatelessWidget {
@@ -18,7 +17,7 @@ class BottomSheetBuilder extends StatelessWidget {
           listener: (context, state) {
             if (state is AddNotesSuccess) {
               debugPrint("AddNotesSuccess");
-              Navigator.pop(context); //! message
+
               final snackBar = customSnackBar(
                   contentType: ContentType.success,
                   title: "Add Note Successful");
@@ -27,6 +26,7 @@ class BottomSheetBuilder extends StatelessWidget {
                 ..hideCurrentSnackBar()
                 ..showSnackBar(snackBar);
               BlocProvider.of<NotesCubit>(context).fetchNotes();
+              Navigator.pop(context);
             }
             if (state is AddNotesFailure) {
               debugPrint("AddNotesFailure");

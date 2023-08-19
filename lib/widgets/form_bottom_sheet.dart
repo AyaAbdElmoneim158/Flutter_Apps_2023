@@ -5,6 +5,7 @@ import 'package:apps/widgets/custom_btn.dart';
 import 'package:apps/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class FormBottomSheet extends StatefulWidget {
   const FormBottomSheet({super.key});
@@ -48,11 +49,11 @@ class _FormBottomSheetState extends State<FormBottomSheet> {
                           NoteModel noteModel = NoteModel(
                               title: title!,
                               subTitle: description!,
-                              date: DateTime.now().toString(),
+                              date: DateFormat.yMd().format(DateTime.now()),
                               color: const Color(0xff9BCDD2).value);
                           BlocProvider.of<AddNotesCubit>(context)
                               .addNote(noteModel);
-                          // BlocProvider.of<NotesCubit>(context).fetchNotes();
+                          BlocProvider.of<NotesCubit>(context).fetchNotes();
                         } else {
                           autovalidateMode = AutovalidateMode.always;
                           setState(() {});
