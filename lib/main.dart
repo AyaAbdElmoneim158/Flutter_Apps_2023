@@ -6,12 +6,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import './views/notes_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/adapters.dart';
+import './cubits/observer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(NoteModelAdapter());
   await Hive.openBox<NoteModel>(notesBoxName);
+  Bloc.observer = SimpleBlocObserver();
 
   runApp(const NotesApp());
 }

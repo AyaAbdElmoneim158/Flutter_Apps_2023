@@ -20,47 +20,48 @@ class _FormBottomSheetState extends State<FormBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NotesCubit, NotesState>(
-      builder: (context, state) {
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Form(
-              key: formKey,
-              autovalidateMode: autovalidateMode,
-              child: SizedBox(
-                height: 400,
-                child: ListView(
-                  children: [
-                    const SizedBox(height: 16),
-                    CustomTextField(
-                        hintText: "Note Title", onSaved: (val) => title = val),
-                    const SizedBox(height: 16),
-                    CustomTextField(
-                        hintText: "Note Description",
-                        maxLines: 7,
-                        onSaved: (val) => description = val),
-                    const SizedBox(height: 32),
-                    CustomBtn(onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        formKey.currentState!.save();
-                        NoteModel noteModel = NoteModel(
-                            title: title!,
-                            subTitle: description!,
-                            date: DateTime.now().toString(),
-                            color: const Color(0xff9BCDD2).value);
-                        BlocProvider.of<AddNotesCubit>(context)
-                            .addNote(noteModel);
-                        BlocProvider.of<NotesCubit>(context).fetchNotes();
-                      } else {
-                        autovalidateMode = AutovalidateMode.always;
-                        setState(() {});
-                      }
-                    })
-                  ],
-                ),
-              )),
-        );
-      },
+    return Padding(
+      padding: EdgeInsets.only(
+          left: 8, right: 8, bottom: MediaQuery.of(context).viewInsets.bottom),
+      child: SingleChildScrollView(
+        child: Form(
+            key: formKey,
+            autovalidateMode: autovalidateMode,
+            child: Column(
+              children: [
+                const SizedBox(height: 16),
+                CustomTextField(
+                    hintText: "Note Title", onSaved: (val) => title = val),
+                const SizedBox(height: 16),
+                CustomTextField(
+                    hintText: "Note Description",
+                    maxLines: 7,
+                    onSaved: (val) => description = val),
+                const SizedBox(height: 32),
+                BlocBuilder<AddNotesCubit, AddNotesState>(
+                    builder: (context, state) {
+                  return CustomBtn(
+                      isLoading: state is AddNotesLoading ? true : false,
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          formKey.currentState!.save();
+                          NoteModel noteModel = NoteModel(
+                              title: title!,
+                              subTitle: description!,
+                              date: DateTime.now().toString(),
+                              color: const Color(0xff9BCDD2).value);
+                          BlocProvider.of<AddNotesCubit>(context)
+                              .addNote(noteModel);
+                          // BlocProvider.of<NotesCubit>(context).fetchNotes();
+                        } else {
+                          autovalidateMode = AutovalidateMode.always;
+                          setState(() {});
+                        }
+                      });
+                }),
+              ],
+            )),
+      ),
     );
   }
 }
