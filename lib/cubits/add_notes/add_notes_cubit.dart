@@ -8,7 +8,10 @@ part 'add_notes_state.dart';
 class AddNotesCubit extends Cubit<AddNotesState> {
   AddNotesCubit() : super(AddNotesInitial());
 
+  Color colorNotes = const Color(0xff0E2954);
+
   void addNote(NoteModel noteModel) {
+    noteModel.color = colorNotes.value;
     emit(AddNotesLoading());
     debugPrint(
         "len ${Hive.box<NoteModel>(notesBoxName).values.length.toString()}");

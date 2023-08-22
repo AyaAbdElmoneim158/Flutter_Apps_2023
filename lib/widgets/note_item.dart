@@ -47,7 +47,7 @@ class NoteItem extends StatelessWidget {
                       onPressed: () {
                         note.delete();
                         final snackBar = customSnackBar(
-                            contentType: ContentType.warning,
+                            contentType: ContentType.failure,
                             title: "Deleted Note Successful");
 
                         ScaffoldMessenger.of(context)

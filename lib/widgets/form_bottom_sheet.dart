@@ -1,6 +1,7 @@
 import 'package:apps/cubits/add_notes/add_notes_cubit.dart';
 import 'package:apps/cubits/notes_cubit/notes_cubit.dart';
 import 'package:apps/models/note_model.dart';
+import 'package:apps/widgets/color_listview.dart';
 import 'package:apps/widgets/custom_btn.dart';
 import 'package:apps/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +40,8 @@ class _FormBottomSheetState extends State<FormBottomSheet> {
                     maxLines: 7,
                     onSaved: (val) => description = val),
                 const SizedBox(height: 32),
+                const ColorList(),
+                const SizedBox(height: 32),
                 BlocBuilder<AddNotesCubit, AddNotesState>(
                     builder: (context, state) {
                   return CustomBtn(
@@ -50,7 +53,9 @@ class _FormBottomSheetState extends State<FormBottomSheet> {
                               title: title!,
                               subTitle: description!,
                               date: DateFormat.yMd().format(DateTime.now()),
-                              color: const Color(0xff9BCDD2).value);
+                              color: BlocProvider.of<AddNotesCubit>(context)
+                                  .colorNotes
+                                  .value);
                           BlocProvider.of<AddNotesCubit>(context)
                               .addNote(noteModel);
                           BlocProvider.of<NotesCubit>(context).fetchNotes();
