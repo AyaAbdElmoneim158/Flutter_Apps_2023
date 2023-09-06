@@ -1,5 +1,4 @@
 import 'package:apps/constants.dart';
-import 'package:apps/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class CustomBtn extends StatelessWidget {
@@ -10,7 +9,7 @@ class CustomBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
+      // width: double.infinity,
       height: 54,
       child: ElevatedButton(
           onPressed: onPressed,

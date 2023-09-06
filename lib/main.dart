@@ -1,6 +1,5 @@
 import 'package:apps/constants.dart';
-import 'package:apps/screens/bottom_navbar_screen.dart';
-import 'package:apps/screens/splash_screen.dart';
+import 'package:apps/screens/favorites_products_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
               backgroundColor: AppColors.whiteColor, elevation: 0),
           scaffoldBackgroundColor: AppColors.whiteColor,
           textTheme: GoogleFonts.poppinsTextTheme()),
-      home: const BottomNavbarScreen(),
+      home: const FavoritesProductsScreen(),
     );
   }
 }
